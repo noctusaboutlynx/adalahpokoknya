@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rayhan — Portofolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#f6f1e8;
+    --bg-soft:#efe7d8;
+    --ink:#1c1a17;
+    --muted:#766d61;
+    --accent:#9a3324;
+    --accent-soft:#c9603f;
+    --line:rgba(28,26,23,.12);
+    --line-strong:rgba(28,26,23,.22);
+
+    --font-display:'Playfair Display',serif;
+}
+
+html{ background:var(--bg); }
+
+body{
+    background:var(--bg);
+    color:var(--ink);
+    overflow-x:hidden;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:1180px;
+    margin:0 auto;
+    padding:34px 6% 24px;
+}
+
+.logo{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:.3px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:36px;
+}
+
+nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:.85rem;
+    font-weight:500;
+    letter-spacing:.4px;
+    padding-bottom:6px;
+    border-bottom:1px solid transparent;
+    transition:.3s;
+}
+
+nav a:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+.hero{
+    max-width:1180px;
+    margin:0 auto;
+    padding:50px 6% 90px;
+    display:grid;
+    grid-template-columns:1fr 380px;
+    gap:80px;
+    align-items:center;
+}
+
+.label{
+    font-size:.78rem;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+}
+
+.hero-text h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:3.1rem;
+    line-height:1.18;
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.12s;
+}
+
+.role{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:1.15rem;
+    color:var(--accent-soft);
+    margin-bottom:22px;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.22s;
+}
+
+.hero-text p.lede{
+    color:var(--muted);
+    line-height:1.9;
+    font-size:1.02rem;
+    max-width:520px;
+    margin-bottom:34px;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.32s;
+}
+
+.actions{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.42s;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 30px;
+    background:var(--accent);
+    color:var(--bg);
+    text-decoration:none;
+    font-weight:600;
+    font-size:.92rem;
+    border-radius:4px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:var(--ink);
+    transform:translateY(-2px);
+}
+
+.link-quiet{
+    font-size:.88rem;
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:3px;
+    transition:.3s;
+}
+.link-quiet:hover{ color:var(--accent); border-color:var(--accent); }
+
+.photo-wrap{
+    position:relative;
+    opacity:0;
+    animation:fadeUp .9s ease forwards;
+    animation-delay:.2s;
+}
+
+.blob{
+    position:absolute;
+    top:-12%;
+    right:-18%;
+    width:240px;
+    height:240px;
+    background:var(--accent);
+    opacity:.08;
+    border-radius:50%;
+    filter:blur(50px);
+    animation:drift 12s ease-in-out infinite;
+    z-index:0;
+}
+
+@keyframes drift{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    50%{ transform:translate(-14px,16px) scale(1.08); }
+}
+
+.photo-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:3/4;
+    z-index:1;
+    animation:floatPhoto 6.5s ease-in-out infinite;
+}
+
+.photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border:1px solid var(--line-strong);
+    box-shadow:0 24px 50px rgba(28,26,23,.18);
+}
+
+.corner{
+    position:absolute;
+    width:22px;
+    height:22px;
+    border-color:var(--ink);
+}
+
+.corner.tl{ top:-10px; left:-10px; border-top:2px solid; border-left:2px solid; }
+.corner.br{ bottom:-10px; right:-10px; border-bottom:2px solid; border-right:2px solid; }
+
+.caption{
+    text-align:center;
+    margin-top:18px;
+    font-style:italic;
+    font-family:var(--font-display);
+    font-size:.85rem;
+    color:var(--muted);
+    letter-spacing:.3px;
+}
+
+@keyframes floatPhoto{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+}
+
+@keyframes fadeUp{
+    from{ opacity:0; transform:translateY(22px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.facts{
+    max-width:1180px;
+    margin:0 auto;
+    padding:50px 6%;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+}
+
+.fact{
+    padding:0 30px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+
+.fact.in-view{ opacity:1; transform:translateY(0); }
+
+.fact + .fact{ border-left:1px solid var(--line); }
+
+.fact .k{
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:1.5px;
+    color:var(--accent);
+    margin-bottom:8px;
+}
+
+.fact .v{
+    font-family:var(--font-display);
+    font-size:1.15rem;
+    font-weight:500;
+}
+
+.quote{
+    max-width:780px;
+    margin:0 auto;
+    padding:100px 6%;
+    text-align:center;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+
+.quote.in-view{ opacity:1; transform:translateY(0); }
+
+.quote p{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:1.8rem;
+    line-height:1.5;
+}
+
+.quote p::before{ content:"“"; color:var(--accent); }
+.quote p::after{ content:"”"; color:var(--accent); }
+
+.explore{
+    max-width:1180px;
+    margin:0 auto;
+    padding:20px 6% 100px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+}
+
+.explore-card{
+    display:block;
+    padding:34px 30px;
+    border:1px solid var(--line-strong);
+    text-decoration:none;
+    color:var(--ink);
+    border-radius:6px;
+    transition:.3s;
+    opacity:0;
+    transform:translateY(16px);
+}
+
+.explore-card.in-view{ opacity:1; transform:translateY(0); }
+
+.explore-card:hover{
+    border-color:var(--accent);
+    background:var(--bg-soft);
+    transform:translateY(-4px);
+}
+
+.explore-card .num{
+    font-family:var(--font-display);
+    font-size:.8rem;
+    color:var(--accent);
+    margin-bottom:14px;
+    display:block;
+}
+
+.explore-card h3{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    margin-bottom:10px;
+}
+
+.explore-card p{
+    color:var(--muted);
+    font-size:.9rem;
+    line-height:1.7;
+}
+
+.explore-card .go{
+    margin-top:16px;
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--accent);
+}
+
+footer{
+    max-width:1180px;
+    margin:0 auto;
+    padding:30px 6% 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--line);
+}
+
+footer .copy{
+    font-size:.8rem;
+    color:var(--muted);
+}
+
+.social a{
+    color:var(--ink);
+    font-size:1rem;
+    text-decoration:none;
+    transition:.3s;
+}
+.social a:hover{ color:var(--accent); }
+
+@media(max-width:980px){
+    .hero{ grid-template-columns:1fr; gap:50px; }
+    .photo-wrap{ order:-1; max-width:320px; margin:0 auto; }
+    .facts{ grid-template-columns:1fr; gap:24px; }
+    .fact + .fact{ border-left:none; border-top:1px solid var(--line); padding-top:24px; }
+    .explore{ grid-template-columns:1fr; }
+}
+
+@media(max-width:560px){
+    header{ flex-direction:column; gap:16px; padding:26px 6% 18px; }
+    nav ul{ gap:20px; }
+    .hero-text h1{ font-size:2.3rem; }
+    .quote p{ font-size:1.4rem; }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Rayhan Setiawan Irvan</div>
+<nav>
+<ul>
+<li><a href="index.html">Beranda</a></li>
+<li><a href="prestasi.html">Pengalaman</a></li>
+<li><a href="kenangan.html">Kegiatan</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+
+<div class="hero-text">
+<p class="label">Portofolio Pelajar</p>
+<h1>Rayhan Setiawan Irvan</h1>
+<p class="role">Pelajar · Pemain Basket · Penggemar Coding</p>
+<p class="lede">
+Saya pelajar kelas 8 di SMP Islam Athirah 1 Makassar dengan ketertarikan pada olahraga fisik dan olahraga otak — basket di lapangan, dan logika di balik kode. Halaman ini berisi rangkuman perjalanan, Pengalaman, dan kegiatan saya selama ini.
+</p>
+<div class="actions">
+<a href="prestasi.html" class="btn">Lihat Pengalaman</a>
+<a href="kenangan.html" class="link-quiet">Lihat Kegiatan</a>
+</div>
+</div>
+
+<div class="photo-wrap">
+<div class="blob"></div>
+<div class="photo-frame">
+<span class="corner tl"></span>
+<img src="https://i.ibb.co/vvdL3nLG/Screenshot-2026-06-18-221125.png" alt="messi">
+<span class="corner br"></span>
+</div>
+<p class="caption">Rayhan — Kelas 8, 2026</p>
+</div>
+
+</section>
+
+<section class="facts">
+<div class="fact">
+<div class="k">SEKOLAH</div>
+<div class="v">SMP Islam Athirah 1 Makassar</div>
+</div>
+<div class="fact">
+<div class="k">KELAS</div>
+<div class="v">8</div>
+</div>
+<div class="fact">
+<div class="k">MINAT</div>
+<div class="v">Basket &amp; Coding</div>
+</div>
+</section>
+
+<section class="quote">
+<p>Disiplin di lapangan, presisi dalam belajar.</p>
+</section>
+
+<section class="explore">
+<a href="prestasi.html" class="explore-card">
+<span class="num">01</span>
+<h3>Pengalaman</h3>
+<p>Rangkuman pencapaian dan penghargaan yang pernah saya raih, baik di bidang akademik maupun non-akademik.</p>
+<span class="go">Lihat selengkapnya →</span>
+</a>
+<a href="kenangan.html" class="explore-card">
+<span class="num">02</span>
+<h3>Kegiatan</h3>
+<p>Dokumentasi momen dan aktivitas yang telah saya jalani selama menjadi pelajar di sekolah.</p>
+<span class="go">Lihat selengkapnya →</span>
+</a>
+</section>
+
+<footer>
+<p class="copy">© 2026 Rayhan</p>
+<div class="social">
+<a href="https://instagram.com/ketikankecap.exe" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+</footer>
+
+<script>
+const items = document.querySelectorAll(".fact, .quote, .explore-card");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("in-view");
+        }
+    });
+}, { threshold:.2 });
+
+items.forEach(el=> observer.observe(el));
+</script>
+
+</body>
+</html>
